@@ -1,0 +1,87 @@
+package com.example.marshmallow
+
+import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+
+class MainActivity : AppCompatActivity() {
+
+    private val historicalFigures = mapOf(
+
+        27 to "Fredo Santana",
+        28 to "Heath Ledger",
+        29 to "Lee Thompson Young",
+        30 to "Gregory Tyree Boyce",
+        31 to "Sara Holmes",
+        32 to "Bruce Lee",
+        33 to "Naya Rivera",
+        34 to "Aaron Carter",
+        35 to "Ashley Ross",
+        36 to "Princess Diana",
+        37 to "Bobby Darin",
+        38 to "Chris Kyle",
+        39 to "Anna Nicole Smith",
+        40 to "Stephen Boss",
+        41 to "Kobe Bryant",
+        42 to "Adan Canto",
+        43 to "Adan Canto",
+        43 to "Natalie Wood",
+        44 to "Billie Holiday",
+        45 to "Canada Lee",
+        46 to "Chyna",
+        47 to "Charlotte Dawson",
+        48 to "Whitney Houston",
+        49 to "Stuart Scott",
+        50 to "Michael Jackson",
+        51 to "Yolanda King",
+        52 to "Grace Kelly",
+        53 to "kk",
+        54 to "Lisa Marie Presley",
+        55 to "Tammy Wynette",
+        56 to "Abraham Lincoln",
+        57 to "Prince",
+        58 to "Andy Warhol",
+
+
+
+
+        
+
+    )
+
+    @SuppressLint("SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val ageEditText = findViewById<EditText>(R.id.ageEditText)
+        val generateButton = findViewById<Button>(R.id.generateButton)
+        val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val clearButton = findViewById<Button>(R.id.clearButton)
+
+        clearButton.setOnClickListener {
+            ageEditText.text.clear()
+
+
+            generateButton.setOnClickListener {
+            val age = ageEditText.text.toString().toIntOrNull()
+            age?.let {
+                val figure = historicalFigures[age]
+                if (figure != null) {
+                    resultTextView.text = "You are $age years old, which is the same age as $figure."
+                } else {
+                    resultTextView.text = "There is no historical figure in our records who was $age years old."
+                }
+            } ?: run {
+                resultTextView.text = "Please enter a valid age."
+            }
+        }
+
+        }
+    }
+}
+
